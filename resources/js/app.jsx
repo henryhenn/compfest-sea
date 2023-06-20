@@ -1,5 +1,4 @@
 import './bootstrap';
-import 'flowbite/dist/flowbite.min.js';
 import '../css/app.css';
 
 import {createRoot} from 'react-dom/client';
@@ -17,6 +16,6 @@ createInertiaApp({
         root.render(<App {...props} />);
     },
     progress: {
-        color: '#4B5563',
+        color: '#dc2626',
     },
 });
