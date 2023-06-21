@@ -1,10 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +15,8 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return inertia('Home');
-})->name('home');
+Route::get('/', HomeController::class)->name('home');
+Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
 
 //Route::middleware('auth')->group(function () {
 //});

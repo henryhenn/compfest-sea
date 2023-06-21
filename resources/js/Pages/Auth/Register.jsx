@@ -10,7 +10,7 @@ export default function Register() {
     const {data, setData, post, processing, errors, reset} = useForm({
         name: '',
         username: '',
-        age: 0,
+        age: null,
         password: '',
         password_confirmation: '',
     });
@@ -40,7 +40,6 @@ export default function Register() {
                         name="name"
                         value={data.name}
                         className="mt-1 block w-full"
-                        autoComplete="name"
                         isFocused={true}
                         onChange={(e) => setData('name', e.target.value)}
                     />
@@ -57,11 +56,25 @@ export default function Register() {
                         name="username"
                         value={data.username}
                         className="mt-1 block w-full"
-                        autoComplete="username"
                         onChange={(e) => setData('username', e.target.value)}
                     />
 
                     <InputError message={errors.username} className="mt-2"/>
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="age" value="Age"/>
+
+                    <TextInput
+                        id="age"
+                        type="text"
+                        name="age"
+                        value={data.age}
+                        className="mt-1 block w-full"
+                        onChange={(e) => setData('age', e.target.value)}
+                    />
+
+                    <InputError message={errors.age} className="mt-2"/>
                 </div>
 
                 <div className="mt-4">
@@ -73,7 +86,6 @@ export default function Register() {
                         name="password"
                         value={data.password}
                         className="mt-1 block w-full"
-                        autoComplete="new-password"
                         onChange={(e) => setData('password', e.target.value)}
                     />
 
@@ -89,7 +101,6 @@ export default function Register() {
                         name="password_confirmation"
                         value={data.password_confirmation}
                         className="mt-1 block w-full"
-                        autoComplete="new-password"
                         onChange={(e) => setData('password_confirmation', e.target.value)}
                     />
 

@@ -3,10 +3,10 @@ import {usePage} from "@inertiajs/react";
 
 export const Alert = () => {
     const {session} = usePage().props;
-    const [state, setState] = useState(false);
+    const [state, setState] = useState(!!session.message);
 
     return (
-        <div className={"mt-12 mx-4 px-4 py-2 rounded-md bg-blue-50 md:max-w-full md:mx-auto md:px-8 " +
+        <div className={"mx-4 mb-6 px-4 py-2 rounded-md bg-blue-50 w-full md:max-w-4xl md:mx-auto md:px-8 " +
             (
                 state ? 'block' : 'hidden'
             )}>
@@ -21,8 +21,8 @@ export const Alert = () => {
                         </svg>
                     </div>
                     <div className="self-center ml-3">
-                        <div className="text-blue-500">
-                            {session}
+                        <div className="text-stone-900">
+                            {session.message}
                         </div>
                     </div>
                 </div>
