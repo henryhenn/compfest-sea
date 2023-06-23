@@ -24,6 +24,7 @@ export default function Login({status}) {
         e.preventDefault();
 
         post(route('login'));
+        reset('password')
     };
 
     return (

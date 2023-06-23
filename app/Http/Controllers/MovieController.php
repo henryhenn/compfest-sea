@@ -16,57 +16,24 @@ class MovieController extends Controller
         $movies = MovieResource::collection(Movie::query()
             ->orderBy('release_date', 'desc')
             ->select('id', 'title', 'age_rating', 'poster_url')
-            ->paginate(12)
+            ->when(request('search') ?? false, function ($query) {
+                return $query->where('title', 'like', '%' . request('search') . '%');
+            })
+            ->get()
         );
 
         return inertia('Movie/Movies', compact('movies'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
      */
     public function show(Movie $movie)
     {
-        //
+        $movie = new MovieResource($movie);
+
+        return inertia('Movie/Detail', compact('movie'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Movie $movie)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Movie $movie)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Movie $movie)
-    {
-        //
-    }
 }

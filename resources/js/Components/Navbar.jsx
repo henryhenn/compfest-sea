@@ -73,14 +73,11 @@ export const Navbar = () => {
                                             </Dropdown.Trigger>
 
                                             <Dropdown.Content>
-                                                <Dropdown.Link href="" as="button">
-                                                    Balance
+                                                <Dropdown.Link className={route().current('balance.*') ? "bg-red-600" : ""} href={route('balance.index')} as="button">
+                                                    Your Balance
                                                 </Dropdown.Link>
                                                 <Dropdown.Link href="" as="button">
                                                     Transactions History
-                                                </Dropdown.Link>
-                                                <Dropdown.Link href={route('logout')} method="post" as="button">
-                                                    Log Out
                                                 </Dropdown.Link>
                                             </Dropdown.Content>
                                         </Dropdown>
@@ -91,7 +88,7 @@ export const Navbar = () => {
                                         <li className="font-medium text-sm text-gray-100">{auth.user.username}</li>
 
                                         <div className="mt-6">
-                                            <NavLink href="">Balance</NavLink>
+                                            <NavLink href={route('balance.index')} active={route().current('balance.index')}>Your Balance</NavLink>
                                             <NavLink href="">Transactions History</NavLink>
                                         </div>
                                     </div>
@@ -99,7 +96,7 @@ export const Navbar = () => {
                                     <li>
                                         <Link href={route('logout')}
                                               method="post"
-                                              className="block py-3 px-4 text-center text-white bg-transparent hover:bg-red-600 border hover-transition border-red-600 active:bg-red-600 active:shadow-none rounded-lg shadow md:inline">
+                                              className="block py-3 px-4 text-center text-gray-100 bg-transparent hover:bg-red-600 border hover-transition border-red-600 active:bg-red-600 active:shadow-none rounded-lg shadow md:inline">
                                             Logout
                                         </Link>
                                     </li>
@@ -115,7 +112,7 @@ export const Navbar = () => {
                                     </li>
                                     <li>
                                         <Link href={route('login')}
-                                              className="block py-3 px-4 text-center text-white bg-transparent hover:bg-red-600 border hover-transition border-red-600 active:bg-red-600 active:shadow-none rounded-lg shadow md:inline">
+                                              className="block py-3 px-4 text-center text-gray-100 bg-transparent hover:bg-red-600 border hover-transition border-red-600 active:bg-red-600 active:shadow-none rounded-lg shadow md:inline">
                                             Login
                                         </Link>
                                     </li>

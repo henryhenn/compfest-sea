@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BalanceController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', HomeController::class)->name('home');
-Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
+Route::resource('/movies', MovieController::class)->only('index', 'show');
 
-//Route::middleware('auth')->group(function () {
-//});
+Route::middleware('auth')->group(function () {
+    Route::resource('balance', BalanceController::class)->only('index', 'store', 'update');
+});
 
 require __DIR__ . '/auth.php';

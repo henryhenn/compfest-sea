@@ -27,7 +27,7 @@ export default function Home({movies}) {
                 <div className="flex flex-row gap-4">
                     <LinkButton href="" classname="mt-6 font-medium bg-red-600 border-red-600 hover:bg-red-700">Buy
                         tickets here</LinkButton>
-                    <LinkButton href=""
+                    <LinkButton href={route('movies.index')}
                                 classname="mt-6 font-medium hover:bg-gray-100 border-gray-100 hover:text-red-600">See
                         all movies</LinkButton>
                 </div>
