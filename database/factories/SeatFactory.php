@@ -17,7 +17,7 @@ class SeatFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'seat_number' => fake()->unique()->numberBetween(1, 64)
         ];
     }
 }
