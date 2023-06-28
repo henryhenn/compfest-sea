@@ -9,7 +9,6 @@ export default function Detail({movie}) {
         currency: 'IDR'
     })
 
-
     return (
         <MainLayout>
             <Head title="Movie's Detail"/>
@@ -43,10 +42,7 @@ export default function Detail({movie}) {
                                     id="currency">{formatCurrency.format(movie.ticket_price)}</span></span>
                             </div>
                         </div>
-
                     </div>
-
-
                 </article>
             </div>
         </MainLayout>

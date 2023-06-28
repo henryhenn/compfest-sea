@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('movie_id')->constrained();
             $table->foreignId('seat_id')->constrained();
+            $table->foreignId('transaction_id')->constrained();
         });
     }
 
