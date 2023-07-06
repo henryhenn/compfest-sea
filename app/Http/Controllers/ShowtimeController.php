@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ShowtimeResource;
 use App\Models\Showtime;
-use Carbon\Carbon;
 
 class ShowtimeController extends Controller
 {
@@ -12,6 +11,8 @@ class ShowtimeController extends Controller
     {
         $showtimes = ShowtimeResource::collection(
             Showtime::query()
+                ->with('seats')
+                ->searchshowtime()
                 ->orderBy('play_time')
                 ->whereDate('play_time', today())
                 ->get()

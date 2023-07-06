@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class UserBalanceCheckerService
 {
-    public static function check(Request $request, Balance $userBalance)
+    public static function check(Request $request, $userBalance = null)
     {
         if ($userBalance) {
             $userBalance->update([

@@ -1,32 +1,17 @@
 import MainLayout from "@/Layouts/MainLayout.jsx";
-import {Head, Link, useForm, usePage} from "@inertiajs/react";
+import {Head, useForm} from "@inertiajs/react";
 import {Heading} from "@/Components/Heading.jsx";
 import TextInput from "@/Components/TextInput.jsx";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import {Alert} from "@/Components/Alert.jsx";
 import InputError from "@/Components/InputError.jsx";
-import {useEffect} from "react";
-import {data} from "autoprefixer";
+import {formatCurrency} from '@/Components/FormatCurrency.jsx'
 
-export default function Balance({balance}) {
-    const {auth, session} = usePage().props
-
-    const formatCurrency = new Intl.NumberFormat('id-ID', {
-        style: 'currency',
-        currency: 'IDR'
-    })
-
-    const {post, processing, setData, errors, reset, put} = useForm({
-        store_balance: 0,
-        withdraw_balance: 0,
+export default function Balance({auth, balance, session}) {
+    const {data, post, processing, setData, errors, reset, put} = useForm({
+        store_balance: null,
+        withdraw_balance: null,
     });
-
-    useEffect(() => {
-        return (
-            reset('store_balance'),
-            reset('withdraw_balance')
-        )
-    }, []);
 
     const submitBalance = e => {
         e.preventDefault()
@@ -58,7 +43,7 @@ export default function Balance({balance}) {
                         <h2 className="text-4xl group-hover:text-red-600 hover-transition font-bold text-gray-100">
                             {auth.user.name}
                         </h2>
-                        <p className="text-sm font-semibold">{auth.user.username}</p>
+                        <p className="text-sm mt-1 font-semibold">{auth.user.username}</p>
                         <div className="mt-6 text-lg">
                             <p className="text-gray-100">Your balance right now: <span
                                 className="font-semibold">{formatCurrency.format(balance.balance ?? 0)}</span></p>
@@ -76,6 +61,7 @@ export default function Balance({balance}) {
                                 <TextInput
                                     type="number"
                                     name="store_balance"
+                                    value={data.store_balance}
                                     onChange={e => setData('store_balance', e.target.value)}
                                 />
 
@@ -96,6 +82,7 @@ export default function Balance({balance}) {
                                 <TextInput
                                     type="number"
                                     name="withdraw_balance"
+                                    value={data.withdraw_balance}
                                     onChange={e => setData('withdraw_balance', e.target.value)}
                                 />
 

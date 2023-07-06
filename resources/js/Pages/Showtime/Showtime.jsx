@@ -2,8 +2,10 @@ import MainLayout from "@/Layouts/MainLayout.jsx";
 import {Head, router} from "@inertiajs/react";
 import {useState} from "react";
 import {Heading} from "@/Components/Heading.jsx";
+import {LinkButton} from "@/Components/LinkButton.jsx";
 
 export default function Movies({showtimes}) {
+    console.log(showtimes)
     const [search, setSearch] = useState("")
 
     const searchMovies = () => {
@@ -22,11 +24,11 @@ export default function Movies({showtimes}) {
             <Head title="Today's Shows"/>
 
             <div className="min-h-screen">
-                <Heading title="Today's Shows" />
+                <Heading title="Today's Shows"/>
 
                 <div className="flex justify-end">
                     <form
-                        onSubmit={(e) => e.preventDefault()}
+                        onSubmit={e => e.preventDefault()}
                         className="w-full md:w-[40%] mb-4">
                         <div className="relative">
                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +39,7 @@ export default function Movies({showtimes}) {
                             </svg>
                             <input
                                 type="text"
-                                placeholder="Search"
+                                placeholder="Search by Movie Title"
                                 onKeyUp={searchMovies}
                                 onChange={e => setSearch(e.target.value)}
                                 className="w-full py-3 pl-12 pr-4 border-gray-700 bg-neutral-800 text-gray-100 focus:border-red-600 focus:ring-red-500 rounded-md shadow-sm"
@@ -55,7 +57,7 @@ export default function Movies({showtimes}) {
                                     <th className="py-3 pr-6">#</th>
                                     <th className="py-3 pr-6">Movie Title</th>
                                     <th className="py-3 pr-6">Seats Status</th>
-                                    <th className="py-3 pr-6">Ticket Price</th>
+                                    <th className="py-3 pr-6">Order Ticket</th>
                                     <th className="py-3 pr-6">Playing on</th>
                                 </tr>
                                 </thead>
@@ -63,14 +65,24 @@ export default function Movies({showtimes}) {
                                 {
                                     showtimes.map((showtime, key) => (
                                         <tr key={key}>
-                                            <td className="pr-6 py-4 whitespace-nowrap">{key+1}</td>
+                                            <td className="pr-6 py-4 whitespace-nowrap">{key + 1}</td>
                                             <td className="pr-6 py-4 whitespace-nowrap">{showtime.movie.title}</td>
                                             <td className="pr-6 py-4 whitespace-nowrap">
-                                        {/*<span className={`px-3 py-2 rounded-full font-semibold text-xs ${showtime.status == "Active" ? "text-green-600 bg-green-50" : "text-blue-600 bg-blue-50"}`}>*/}
-                                        {/*    {showtime.status}*/}
-                                        {/*</span>*/}
+                                                <span
+                                                    className={`px-3 py-2 rounded-full font-semibold text-xs ${showtime.seats.length < 64 ? "text-green-600 bg-green-50" : "text-red-600 bg-red-50"}`}>
+                                                    {showtime.seats.length < 64 ? "Available" : "Full"}
+                                                </span>
                                             </td>
-                                            <td className="pr-6 py-4 whitespace-nowrap">{showtime.movie.ticket_price}</td>
+                                            <td className="pr-6 py-4 whitespace-nowrap">
+                                                {showtime.seats.length < 64 ? (
+                                                    <LinkButton href={route('order-ticket.index', showtime.movie.id)}
+                                                                classname="font-medium hover:bg-gray-100 border-gray-100 hover:text-red-600">
+                                                        Order Ticket
+                                                    </LinkButton>
+                                                ) : (
+                                                    <p>Seats already full.</p>
+                                                )}
+                                            </td>
                                             <td className="pr-6 py-4 whitespace-nowrap">{showtime.play_time}</td>
                                         </tr>
                                     ))
@@ -81,7 +93,7 @@ export default function Movies({showtimes}) {
                     </>
                 ) : (
                     <h1 className="text-3xl mt-10 md:text-4xl pb-4 text-center bg-clip-text text-transparent border-none bg-gradient-to-r from-gray-100 to-gray-400 font-bold">
-                        There's no movies showing today. Please try again later!
+                        The movie's showtimes aren't available. Please try again later!
                     </h1>
                 )}
             </div>

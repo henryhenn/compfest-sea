@@ -12,4 +12,8 @@ class Movie extends Model
     public $timestamps = false;
 
     protected $guarded = ['id'];
+
+    protected $casts = [
+        'release_date' => 'date:d M Y'
+    ];
 }

@@ -1,5 +1,5 @@
 import MainLayout from "@/Layouts/MainLayout.jsx";
-import {Head, Link, usePage} from "@inertiajs/react";
+import {Head, usePage} from "@inertiajs/react";
 import {LinkButton} from "@/Components/LinkButton.jsx";
 import {Alert} from "@/Components/Alert.jsx";
 import {MovieCard} from "@/Components/MovieCard.jsx";
@@ -25,7 +25,7 @@ export default function Home({movies}) {
                     its affordable ticket prices and wide range of movie genres.</p>
 
                 <div className="flex flex-row gap-4">
-                    <LinkButton href="" classname="mt-6 font-medium bg-red-600 border-red-600 hover:bg-red-700">Buy
+                    <LinkButton href={route('showtimes')} classname="mt-6 font-medium bg-red-600 border-red-600 hover:bg-red-700">Buy
                         tickets here</LinkButton>
                     <LinkButton href={route('movies.index')}
                                 classname="mt-6 font-medium hover:bg-gray-100 border-gray-100 hover:text-red-600">See

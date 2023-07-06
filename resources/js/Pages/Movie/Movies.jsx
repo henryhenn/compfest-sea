@@ -27,7 +27,6 @@ export default function Movies({movies}) {
 
                 <div className="flex justify-end">
                     <form
-                        onSubmit={(e) => e.preventDefault()}
                         className="w-full md:w-[40%] mb-4">
                         <div className="relative">
                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -49,8 +48,8 @@ export default function Movies({movies}) {
 
                 {movies.length > 0 ? (
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                        {movies.map((movie) => (
-                            <MovieCard movie={movie}/>
+                        {movies.map((movie, key) => (
+                            <MovieCard key={key} movie={movie}/>
                         ))}
                     </div>
                 ) : (

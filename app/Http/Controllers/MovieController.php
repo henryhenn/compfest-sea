@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\MovieResource;
+use App\Http\Resources\SeatResource;
+use App\Http\Resources\ShowtimeResource;
 use App\Models\Movie;
+use App\Models\Seat;
+use App\Models\Showtime;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
@@ -32,8 +36,14 @@ class MovieController extends Controller
     public function show(Movie $movie)
     {
         $movie = new MovieResource($movie);
+        $showtimes = ShowtimeResource::collection(
+            Showtime::query()
+            ->where('movie_id', $movie->id)
+            ->where('play_time', '>=', now())
+            ->get()
+        );
 
-        return inertia('Movie/Detail', compact('movie'));
+        return inertia('Movie/Detail', compact('movie', 'showtimes'));
     }
 
 }
