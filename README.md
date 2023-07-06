@@ -52,6 +52,7 @@ With this one line command, it will:
 
 ### Running the Application
 
-Finally, we can run our application with the following command: `php artisan serve`. Or if you already installed *
-*Laragon**, **Valet for Mac/Windows**, you don't have to run the command, just follow the default step to run Laravel on
+Finally, we can run our application with the following command: `php artisan serve`. Or if you already installed
+**Laragon**, **Valet for Mac/Windows**, you don't have to run the command, just follow the default step to run Laravel
+on
 top of those two.
