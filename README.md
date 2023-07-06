@@ -7,11 +7,11 @@ its affordable ticket prices and wide range of movie genres.
 
 ## Tech Stack
 
-<p align="center">
+<p style="display: flex;">
 <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
-<img alt="Tailwind CSS" src="https://raw.githubusercontent.com/tailwindlabs/tailwindcss/HEAD/.github/logo-light.svg" width="350" height="70" style="visibility:visible;max-width:100%;">
-<img src="https://raw.githubusercontent.com/inertiajs/.github/master/LOGO.png" alt="Inertia.js" style="max-width: 100%;">
+<img alt="Tailwind CSS" src="https://raw.githubusercontent.com/tailwindlabs/tailwindcss/HEAD/.github/logo-light.svg" width="350">
 </p>
+<img src="https://raw.githubusercontent.com/inertiajs/.github/master/LOGO.png" alt="Inertia.js" style="max-width: 100%;">
 
 ## Setup
 
