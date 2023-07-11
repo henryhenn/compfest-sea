@@ -40,7 +40,7 @@ export default function Detail({auth, movie, showtimes}) {
                             <div className="mt-6">
                                 <p className="mb-2">Available Showtimes: </p>
                                 <div className="grid grid-cols-2 gap-4">
-                                    {showtimes.length > 0 ? showtimes.map(showtime => (
+                                    {movie.showtimes.length > 0 ? movie.showtimes.map(showtime => (
                                         <span
                                             className="text-gray-100 p-3 border border-gray-100 rounded font-semibold">{showtime.play_time}</span>
                                     )) : (
@@ -53,7 +53,7 @@ export default function Detail({auth, movie, showtimes}) {
 
                         <div className="pb-3">
                             {auth.user ? (
-                                showtimes.length >= 1 ?
+                                movie.showtimes.length >= 1 ?
                                     <Link
                                         href={route('order-ticket.index', movie)}
                                         className="block py-3 px-4 bg-gray-100 text-red-600 text-center border hover-transition rounded-lg shadow md:inline font-medium hover:bg-gray-300 hover:text-red-700">

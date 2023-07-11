@@ -11,14 +11,14 @@ class UserBalanceCheckerService
     {
         if ($userBalance) {
             $userBalance->update([
-                'balance' => $userBalance->balance + $request->integer('store_balance')
+                'balance' => $userBalance->balance + $request->integer('balance')
             ]);
 
             return back()->with('message', 'Your topup process completed!');
         } else {
             Balance::create([
                 'user_id' => auth()->id(),
-                'balance' => $request->integer('store_balance'),
+                'balance' => $request->integer('balance'),
             ]);
 
             return back()->with('message', 'Your topup process completed!');

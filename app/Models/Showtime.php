@@ -18,7 +18,7 @@ class Showtime extends Model
     protected $guarded = ['id'];
 
     protected $casts = [
-        'play_time' => 'datetime:d M Y H:i'
+        'play_time' => 'datetime:d M Y H:i',
     ];
 
     public function scopeSearchShowtime($query)

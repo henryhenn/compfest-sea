@@ -7,10 +7,9 @@ import {Alert} from "@/Components/Alert.jsx";
 import InputError from "@/Components/InputError.jsx";
 import {formatCurrency} from '@/Components/FormatCurrency.jsx'
 
-export default function Balance({auth, balance, session}) {
+export default function Balance({auth, session}) {
     const {data, post, processing, setData, errors, reset, put} = useForm({
-        store_balance: null,
-        withdraw_balance: null,
+        balance: null
     });
 
     const submitBalance = e => {
@@ -22,7 +21,7 @@ export default function Balance({auth, balance, session}) {
 
     const withdrawBalance = e => {
         e.preventDefault()
-        put(route('balance.update', balance.id), {
+        put(route('balance.update', auth.user.balance.id), {
             preserveScroll: true,
             preserveState: true
         })
@@ -46,7 +45,8 @@ export default function Balance({auth, balance, session}) {
                         <p className="text-sm mt-1 font-semibold">{auth.user.username}</p>
                         <div className="mt-6 text-lg">
                             <p className="text-gray-100">Your balance right now: <span
-                                className="font-semibold">{formatCurrency.format(balance.balance ?? 0)}</span></p>
+                                className="font-semibold">{formatCurrency.format(auth.user.balance ? auth.user.balance.balance : 0)}</span>
+                            </p>
                         </div>
 
                     </div>
@@ -60,15 +60,14 @@ export default function Balance({auth, balance, session}) {
                             <form method="post" onSubmit={submitBalance} className="inline-flex">
                                 <TextInput
                                     type="number"
-                                    name="store_balance"
-                                    value={data.store_balance}
-                                    onChange={e => setData('store_balance', e.target.value)}
+                                    name="balance"
+                                    onChange={e => setData('balance', e.target.value)}
                                 />
 
                                 <PrimaryButton disabled={processing} className="ml-4">Submit</PrimaryButton>
                             </form>
 
-                            <InputError message={errors.store_balance} className="mt-2"/>
+                            {errors.balance && <InputError message={errors.balance} className="mt-2"/>}
                         </div>
                     </div>
                 </div>
@@ -78,19 +77,17 @@ export default function Balance({auth, balance, session}) {
                     <div className="pt-3 ml-4 mr-2 pb-3 flex flex-col gap-6 md:gap-10 md:flex-row">
                         <h3 className="text-2xl font-semibold">Withdraw Your Balance Here: </h3>
                         <div className="flex flex-col">
-                            <form onSubmit={withdrawBalance} className="inline-flex">
+                            <form method="post" onSubmit={withdrawBalance} className="inline-flex">
                                 <TextInput
                                     type="number"
-                                    name="withdraw_balance"
-                                    value={data.withdraw_balance}
-                                    onChange={e => setData('withdraw_balance', e.target.value)}
+                                    name="balance"
+                                    onChange={e => setData('balance', e.target.value)}
                                 />
-
 
                                 <PrimaryButton disabled={processing} className="ml-4">Submit</PrimaryButton>
                             </form>
 
-                            <InputError message={errors.withdraw_balance} className="mt-2"/>
+                            {errors.balance && <InputError message={errors.balance} className="mt-2"/>}
                         </div>
                     </div>
                 </div>

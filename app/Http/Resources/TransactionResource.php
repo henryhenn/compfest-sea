@@ -21,6 +21,7 @@ class TransactionResource extends JsonResource
             'is_canceled' => $this->is_canceled,
             'created_at' => $this->created_at->format('d M Y H:i'),
             'updated_at' => $this->updated_at->format('d M Y H:i'),
+            'showtime' => $this->showtime_id
         ];
     }
 }

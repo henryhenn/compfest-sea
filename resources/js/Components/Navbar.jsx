@@ -44,7 +44,7 @@ export const Navbar = () => {
 
                             <NavLink href={route('movies.index')} active={route().current('movies.*')}>Movies</NavLink>
 
-                            <NavLink href={route('showtimes')} active={route().current('showtimes')}>Showtimes</NavLink>
+                            <NavLink href={route('showtimes')} active={route().current('showtimes')}>Show Times</NavLink>
 
                             <span className='hidden w-px h-6 bg-gray-300 md:block'></span>
                             <div className='space-y-3 items-center gap-x-6 md:flex md:space-y-0'>

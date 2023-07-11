@@ -17,7 +17,8 @@ class StoreOrderTicketService
         return DB::transaction(function () use ($request, $userBalance) {
             $transaction = Transaction::create([
                 'user_id' => auth()->id(),
-                'total_cost' => $request->integer('ticket_price')
+                'total_cost' => $request->integer('ticket_price'),
+                'showtime_id' => $request->integer('showtime')
             ]);
 
             Ticket::create([

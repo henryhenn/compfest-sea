@@ -12,7 +12,12 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'total_cost'];
+    protected $guarded = ['id'];
+
+    protected $casts = [
+        'created_at' => 'datetime:d M Y H:i',
+        'updated_at' => 'datetime:d M Y H:i',
+    ];
 
     protected function serializeDate(DateTimeInterface $date)
     {
@@ -22,5 +27,10 @@ class Transaction extends Model
     public function ticket(): HasOne
     {
         return $this->hasOne(Ticket::class);
+    }
+
+    public function showtime(): HasOne
+    {
+        return $this->hasOne(Showtime::class);
     }
 }

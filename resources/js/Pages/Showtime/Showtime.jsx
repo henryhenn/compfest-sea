@@ -5,7 +5,6 @@ import {Heading} from "@/Components/Heading.jsx";
 import {LinkButton} from "@/Components/LinkButton.jsx";
 
 export default function Movies({showtimes}) {
-    console.log(showtimes)
     const [search, setSearch] = useState("")
 
     const searchMovies = () => {

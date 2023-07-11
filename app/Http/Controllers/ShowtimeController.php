@@ -14,6 +14,7 @@ class ShowtimeController extends Controller
                 ->with('seats')
                 ->searchshowtime()
                 ->orderBy('play_time')
+                ->whereTime('play_time', '>', now())
                 ->whereDate('play_time', today())
                 ->get()
         );

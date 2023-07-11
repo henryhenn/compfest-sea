@@ -11,18 +11,13 @@ class BalanceController extends Controller
 {
     public function index()
     {
-        $balance = new BalanceResource(Balance::query()
-            ->where('user_id', auth()->id())
-            ->first()
-        );
-
-        return inertia('Balance/Balance', compact('balance'));
+        return inertia('Balance/Balance');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'store_balance' => 'required|numeric'
+            'balance' => 'required|numeric'
         ]);
 
         $userBalance = Balance::where('user_id', auth()->id())->first();
@@ -33,11 +28,11 @@ class BalanceController extends Controller
     public function update(Request $request, Balance $balance)
     {
         $request->validate([
-            'withdraw_balance' => ['required', 'numeric', 'max:' . $balance->balance]
+            'balance' => ['required', 'numeric', 'max:' . $balance->balance]
         ]);
 
         $balance->update([
-            'balance' => $balance->balance - $request->integer('withdraw_balance')
+            'balance' => $balance->balance - $request->integer('balance')
         ]);
 
         return back()->with('message', 'Your withdrawal process completed!');

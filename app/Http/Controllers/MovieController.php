@@ -35,15 +35,9 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        $movie = new MovieResource($movie);
-        $showtimes = ShowtimeResource::collection(
-            Showtime::query()
-            ->where('movie_id', $movie->id)
-            ->where('play_time', '>=', now())
-            ->get()
-        );
+        $movie = new MovieResource($movie->load('showtimes'));
 
-        return inertia('Movie/Detail', compact('movie', 'showtimes'));
+        return inertia('Movie/Detail', compact('movie'));
     }
 
 }

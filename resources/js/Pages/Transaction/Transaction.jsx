@@ -23,7 +23,7 @@ export default function Transaction({transactions, session}) {
                             <th className="py-3 pr-6">Date</th>
                             <th className="py-3 pr-6">Total Cost</th>
                             <th className="py-3 pr-6">See Ticket</th>
-                            <th className="py-3 pr-6">Cancel Transaction</th>
+                            <th className="py-3 pr-6">Cancel Transaction/Canceled at</th>
                         </tr>
                         </thead>
                         <tbody className="text-gray-100 divide-y">
@@ -42,17 +42,22 @@ export default function Transaction({transactions, session}) {
                                         </LinkButton>
                                     </td>
                                     <td className="pr-6 py-4 whitespace-nowrap">
-                                        <LinkButton href={route('transactions.update', transaction)} method="put"
-                                                    disabled={transaction.is_canceled}
-                                                    classname="font-medium bg-red-600 border-red-600 hover:bg-red-700">
-                                            Cancel
-                                        </LinkButton>
+                                        {transaction.is_canceled === 0 ? (
+                                            <LinkButton href={route('transactions.update', transaction)} method="put"
+                                                        onClick={e => confirm("Are you sure?")}
+                                                        disabled={transaction.is_canceled}
+                                                        classname="font-medium bg-red-600 border-red-600 hover:bg-red-700">
+                                                Cancel
+                                            </LinkButton>) : (
+                                            transaction.updated_at
+                                        )}
                                     </td>
                                 </tr>
                             )) : (
                                 <tr>
                                     <td className="pr-6 py-4 whitespace-nowrap" colSpan="5">
-                                        <h3 className="text-center font-bold text-2xl">Hmm...no transactions yet. Have you made at least one transaction?</h3>
+                                        <h3 className="text-center font-bold text-2xl">Hmm...no transactions yet. Have
+                                            you made at least one transaction?</h3>
                                     </td>
                                 </tr>
                             )
