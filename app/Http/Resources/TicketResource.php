@@ -18,6 +18,7 @@ class TicketResource extends JsonResource
             'user' => auth()->user(),
             'movie' => new MovieResource($this->movie),
             'seat' => new SeatResource($this->seat),
+            'transaction' => new TransactionResource($this->whenLoaded('transaction'))
         ];
     }
 }

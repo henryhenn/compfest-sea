@@ -5,18 +5,32 @@ import {formatCurrency} from '@/Components/FormatCurrency.jsx'
 import InputLabel from "@/Components/InputLabel.jsx";
 import TextInput from "@/Components/TextInput.jsx";
 import InputError from "@/Components/InputError.jsx";
+import Modal from "@/Components/Modal.jsx";
+import {useState} from "react";
+import {data} from "autoprefixer";
 
 export default function Order({auth, movie, seats, showtimes}) {
-    const {setData, post, errors, processing} = useForm({
+    const [state, setState] = useState(false)
+
+    const {data, setData, post, errors} = useForm({
         showtime: null,
-        seat_number: null,
+        seat_numbers: [],
         movie_id: movie.id,
         ticket_price: movie.ticket_price,
     })
 
+    const handleSeatsCheckbox = e => {
+        let seat_id = e.target.value
+
+        e.target.checked
+            ? setData('seat_numbers', [...data.seat_numbers, seat_id])
+            : setData("seat_numbers", data.seat_numbers.filter(seat_number => seat_number !== seat_id))
+    }
+
     const submitOrder = e => {
         e.preventDefault()
         post(route('order-ticket.store'))
+        setState(false)
     }
 
     return (
@@ -97,15 +111,16 @@ export default function Order({auth, movie, seats, showtimes}) {
                                             Seat Here</h3>
 
                                         <p className="text-gray-100 p-3 border border-gray-100 rounded font-semibold text-center mb-10">Screen</p>
-                                        {errors.seat_number && <InputError message={errors.seat_number}/>}
+                                        {errors.seat_numbers && <InputError message={errors.seat_numbers}/>}
                                         <div className="mb-3 grid grid-cols-12 gap-3">
                                             {seats.map((seat, key) => (
                                                 <div className="flex flex-col md:gap-1 mx-auto">
-                                                    <input name="seat_number"
+                                                    <input name="seat_numbers[]"
                                                            key={key}
-                                                           onChange={e => setData('seat_number', e.target.value)}
-                                                           className='w-6 h-6'
-                                                           type="radio"
+                                                           disabled={data.showtime == null || seat.id === showtimes.map(showtime => showtime.seats.map(seats => console.log(seats.id)))}
+                                                           onChange={handleSeatsCheckbox}
+                                                           className='w-6 h-6 disabled:bg-gray-400 checked:bg-red-600 hover-transition'
+                                                           type="checkbox"
                                                            value={seat.id}/>
                                                     <InputLabel className="text-center" value={seat.seat_number}/>
                                                 </div>
@@ -123,11 +138,38 @@ export default function Order({auth, movie, seats, showtimes}) {
 
                                     {auth.user.age >= movie.age_rating ? (
                                         auth.user.balance.balance >= movie.ticket_price ? (
-                                            <button type="submit"
-                                                    disabled={processing}
-                                                    className="block py-3 px-4 text-center text-gray-100 bg-red-600 border hover-transition border-red-600 hover:bg-red-700 hover:text-gray-200 active:shadow-none rounded-lg shadow md:inline">
-                                                Order Ticket
-                                            </button>
+                                            <>
+                                                <button type="button"
+                                                        onClick={e => setState(!state)}
+                                                        className="block py-3 px-4 text-center text-gray-100 bg-red-600 border hover-transition border-red-600 hover:bg-red-700 hover:text-gray-200 active:shadow-none rounded-lg shadow md:inline">
+                                                    Order Ticket
+                                                </button>
+
+                                                {state ? (
+                                                    <Modal>
+                                                        <div className="grid grid-cols-2">
+                                                            <div>
+                                                                <p>Name</p>
+                                                                <p>Movie Title</p>
+                                                                <p>Total Reserved Seats</p>
+                                                                <p>Total Ticket Price</p>
+                                                            </div>
+                                                            <div className="font-semibold">
+                                                                <p>{auth.user.name}</p>
+                                                                <p>{movie.title}</p>
+                                                                <p>{data.seat_numbers.length ?? "Please select your seat first!"}</p>
+                                                                <p>{formatCurrency.format(movie.ticket_price * data.seat_numbers.length)}</p>
+                                                            </div>
+                                                        </div>
+
+                                                        <p>After this transaction, your balance will be deducted by:
+                                                            <span
+                                                                className="font-semibold">{" "}{formatCurrency.format(movie.ticket_price * data.seat_numbers.length)}</span>
+                                                        </p>
+                                                    </Modal>
+                                                ) : ""
+                                                }
+                                            </>
                                         ) : (
                                             <p className="md:flex items-center">Sorry, your balance isn't enough to buy
                                                 this ticket.
@@ -143,13 +185,11 @@ export default function Order({auth, movie, seats, showtimes}) {
                                             rating</p>
                                     )}
                                 </div>
-
                             </form>
                         </div>
                     </div>
                 </article>
             </div>
         </MainLayout>
-
     )
 }

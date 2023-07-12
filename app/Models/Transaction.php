@@ -6,6 +6,7 @@ use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Transaction extends Model
@@ -24,9 +25,9 @@ class Transaction extends Model
         return $date->timezone('Asia/Jakarta');
     }
 
-    public function ticket(): HasOne
+    public function tickets(): HasMany
     {
-        return $this->hasOne(Ticket::class);
+        return $this->hasMany(Ticket::class);
     }
 
     public function showtime(): HasOne

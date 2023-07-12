@@ -20,9 +20,7 @@ class OrderTicketController extends Controller
     public function index(Movie $movie)
     {
         $movie = new MovieResource($movie);
-        $seats = SeatResource::collection(
-            Seat::orderBy('seat_number')->get()
-        );
+        $seats = SeatResource::collection(Seat::orderBy('seat_number')->get());
         $showtimes = ShowtimeResource::collection(
             Showtime::query()
                 ->with('seats')
@@ -38,7 +36,7 @@ class OrderTicketController extends Controller
     {
         $request->validate([
             'showtime' => 'required',
-            'seat_number' => 'required',
+            'seat_numbers' => 'required|array|min:1|max:6',
             'movie_id' => 'required',
         ]);
 

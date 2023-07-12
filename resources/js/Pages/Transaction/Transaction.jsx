@@ -1,5 +1,5 @@
 import MainLayout from "@/Layouts/MainLayout.jsx";
-import {Head} from "@inertiajs/react";
+import {Head, Link} from "@inertiajs/react";
 import {Heading} from "@/Components/Heading.jsx";
 import {formatCurrency} from "@/Components/FormatCurrency.jsx";
 import {LinkButton} from "@/Components/LinkButton.jsx";
@@ -36,20 +36,23 @@ export default function Transaction({transactions, session}) {
                                         {formatCurrency.format(transaction.total_cost)}
                                     </td>
                                     <td className="pr-6 py-4 whitespace-nowrap">
-                                        <LinkButton href={route('transactions.update', transaction)}
-                                                    classname="font-medium hover:bg-gray-100 border-gray-100 hover:text-red-600">
-                                            See Ticket
-                                        </LinkButton>
+                                        {!transaction.is_canceled ? (
+                                            <LinkButton href={route('transactions.update', transaction)}
+                                                        classname="font-medium hover:bg-gray-100 border-gray-100 hover:text-red-600">
+                                                See Ticket
+                                            </LinkButton>
+                                        ) : (
+                                            <p className="font-semibold">Transaction canceled</p>
+                                        )}
                                     </td>
                                     <td className="pr-6 py-4 whitespace-nowrap">
-                                        {transaction.is_canceled === 0 ? (
+                                        {!transaction.is_canceled ? (
                                             <LinkButton href={route('transactions.update', transaction)} method="put"
                                                         onClick={e => confirm("Are you sure?")}
-                                                        disabled={transaction.is_canceled}
                                                         classname="font-medium bg-red-600 border-red-600 hover:bg-red-700">
                                                 Cancel
                                             </LinkButton>) : (
-                                            transaction.updated_at
+                                            <p>Canceled at: <span className="font-semibold">{transaction.updated_at}</span></p>
                                         )}
                                     </td>
                                 </tr>

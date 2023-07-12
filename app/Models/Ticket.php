@@ -24,4 +24,9 @@ class Ticket extends Model
     {
         return $this->belongsTo(Seat::class);
     }
+
+    public function transaction(): BelongsTo
+    {
+        return $this->belongsTo(Transaction::class);
+    }
 }

@@ -17,23 +17,29 @@ class StoreOrderTicketService
         return DB::transaction(function () use ($request, $userBalance) {
             $transaction = Transaction::create([
                 'user_id' => auth()->id(),
-                'total_cost' => $request->integer('ticket_price'),
+                'total_cost' => $request->integer('ticket_price') * count($request->seat_numbers),
                 'showtime_id' => $request->integer('showtime')
             ]);
 
-            Ticket::create([
-                'user_id' => auth()->id(),
-                'movie_id' => $request->integer('movie_id'),
-                'seat_id' => $request->integer('seat_number'),
-                'transaction_id' => $transaction->id
-            ]);
+            foreach ($request->seat_numbers as $seat_number) {
+                Ticket::create([
+                    'user_id' => auth()->id(),
+                    'movie_id' => $request->integer('movie_id'),
+                    'seat_id' => $seat_number,
+                    'transaction_id' => $transaction->id
+                ]);
+            }
 
-            DB::table('showtime_seat')->insert([
-                'showtime_id' => $request->integer('showtime'),
-                'seat_id' => $request->integer('seat_number'),
-            ]);
+            foreach ($request->seat_numbers as $seat_number) {
+                DB::table('showtime_seat')->insert([
+                    'showtime_id' => $request->integer('showtime'),
+                    'seat_id' => $seat_number,
+                ]);
+            }
 
-            $userBalance->update(['balance' => $userBalance->balance - $request->integer('ticket_price')]);
+            $userBalance->update([
+                'balance' => $userBalance->balance - $request->integer('ticket_price') * count($request->seat_numbers)
+            ]);
         });
     }
 }

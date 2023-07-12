@@ -33,15 +33,15 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        $userTicket = Ticket::query()
-            ->with(['movie', 'seat'])
-            ->where('transaction_id', $transaction->id)
-            ->firstOrFail();
+        if (count($transaction->tickets) == 0) abort(404);
 
-        $transaction = new TransactionResource($transaction);
-        $ticket = new TicketResource($userTicket);
+        $tickets = TicketResource::collection(
+            Ticket::query()
+                ->whereHas('transaction', fn($query) => $query->where('id', $transaction->id))
+                ->get()
+        );
 
-        return inertia('Transaction/Ticket', compact('ticket', 'transaction'));
+        return inertia('Transaction/Ticket', compact('tickets'));
     }
 
     /**
@@ -64,9 +64,7 @@ class TransactionController extends Controller
             Showtime::query()
                 ->find($transaction->showtime_id)
                 ->seats()
-                ->first()
-                ->pivot
-                ->delete();
+                ->detach();
         });
 
         return back()->with('message', 'Transaction was successfully canceled. Your balance has been refunded!');
