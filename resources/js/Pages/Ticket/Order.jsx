@@ -117,7 +117,7 @@ export default function Order({auth, movie, seats, showtimes}) {
                                                 <div className="flex flex-col md:gap-1 mx-auto">
                                                     <input name="seat_numbers[]"
                                                            key={key}
-                                                           disabled={data.showtime == null || seat.id === showtimes.map(showtime => showtime.seats.map(seats => console.log(seats.id)))}
+                                                           disabled={data.showtime == null}
                                                            onChange={handleSeatsCheckbox}
                                                            className='w-6 h-6 disabled:bg-gray-400 checked:bg-red-600 hover-transition'
                                                            type="checkbox"

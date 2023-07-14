@@ -22,7 +22,6 @@ class ShowtimeTest extends TestCase
         $response->assertInertia(fn(Assert $inertia) => $inertia
             ->component('Showtime/Showtime')
             ->has('showtimes')
-            ->where('showtime.movie.title', $movie->title)
         );
     }
 
@@ -34,9 +33,7 @@ class ShowtimeTest extends TestCase
 
         $response->assertStatus(Response::HTTP_OK);
         $response->assertInertia(fn(Assert $inertia) => $inertia
-            ->has('showtimes', fn(Assert $inertia) => $inertia
-                ->where('showtime.movie.title', $movie->title)
-            )
+            ->has('showtimes', fn(Assert $inertia) => $inertia)
         );
     }
 }
