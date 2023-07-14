@@ -1,6 +1,7 @@
 import {useState} from "react";
+import {LinkButton} from "@/Components/LinkButton.jsx";
 
-export default function Modal({children}) {
+export default function Modal({children, transaction}) {
     const [state, setState] = useState(true)
 
     return (
@@ -28,12 +29,20 @@ export default function Modal({children}) {
                             {children}
                         </div>
                         <div className="flex items-center gap-3 p-4 mt-5 border-t">
-                            <button
-                                type="submit"
-                                className="px-6 py-2 text-white bg-red-600 rounded-md outline-none ring-offset-2 ring-red-600 focus:ring-2"
-                            >
-                                Accept
-                            </button>
+                            {route().current('transactions.*') ? (
+                                <LinkButton href={route('transactions.update', transaction)} method="put"
+                                            onClick={e => setState(false)}
+                                            classname="font-medium bg-red-600 border-red-600 hover:bg-red-700">
+                                    Yes, I'm sure.
+                                </LinkButton>
+                            ) : (
+                                <button
+                                    type="submit"
+                                    className="px-6 py-2 text-white bg-red-600 rounded-md outline-none ring-offset-2 ring-red-600 focus:ring-2"
+                                >
+                                    Accept
+                                </button>
+                            )}
                             <button
                                 className="px-6 py-2 text-gray-800 border rounded-md outline-none ring-offset-2 ring-red-600 focus:ring-2"
                                 onClick={() => setState(false)}

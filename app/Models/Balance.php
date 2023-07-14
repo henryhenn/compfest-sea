@@ -10,8 +10,8 @@ class Balance extends Model
 {
     use HasFactory;
 
-    protected $with = ['user'];
     public $timestamps = false;
+
     protected $fillable = ['user_id', 'balance'];
 
     public function user(): BelongsTo

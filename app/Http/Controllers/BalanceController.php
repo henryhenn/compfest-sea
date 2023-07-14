@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\BalanceResource;
+use App\Http\Requests\BalanceRequest;
 use App\Models\Balance;
 use App\Services\UserBalanceCheckerService;
-use Illuminate\Http\Request;
 
 class BalanceController extends Controller
 {
@@ -14,26 +13,16 @@ class BalanceController extends Controller
         return inertia('Balance/Balance');
     }
 
-    public function store(Request $request)
+    public function store(BalanceRequest $request)
     {
-        $request->validate([
-            'balance' => 'required|numeric'
-        ]);
-
         $userBalance = Balance::where('user_id', auth()->id())->first();
 
-        UserBalanceCheckerService::check($request, $userBalance);
+        UserBalanceCheckerService::topup($request->validated(), $userBalance);
     }
 
-    public function update(Request $request, Balance $balance)
+    public function update(BalanceRequest $request, Balance $balance)
     {
-        $request->validate([
-            'balance' => ['required', 'numeric', 'max:' . $balance->balance]
-        ]);
-
-        $balance->update([
-            'balance' => $balance->balance - $request->integer('balance')
-        ]);
+        UserBalanceCheckerService::withdraw($request->validated(), $balance);
 
         return back()->with('message', 'Your withdrawal process completed!');
     }

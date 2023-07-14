@@ -1,13 +1,12 @@
 import MainLayout from "@/Layouts/MainLayout.jsx";
 import {Head, Link, useForm} from "@inertiajs/react";
 import {Heading} from "@/Components/Heading.jsx";
-import {formatCurrency} from '@/Components/FormatCurrency.jsx'
+import {formatCurrency} from '@/Functions/FormatCurrency.jsx'
 import InputLabel from "@/Components/InputLabel.jsx";
 import TextInput from "@/Components/TextInput.jsx";
 import InputError from "@/Components/InputError.jsx";
 import Modal from "@/Components/Modal.jsx";
 import {useState} from "react";
-import {data} from "autoprefixer";
 
 export default function Order({auth, movie, seats, showtimes}) {
     const [state, setState] = useState(false)

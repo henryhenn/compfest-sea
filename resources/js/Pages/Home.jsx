@@ -1,12 +1,10 @@
 import MainLayout from "@/Layouts/MainLayout.jsx";
-import {Head, usePage} from "@inertiajs/react";
+import {Head} from "@inertiajs/react";
 import {LinkButton} from "@/Components/LinkButton.jsx";
 import {Alert} from "@/Components/Alert.jsx";
 import {MovieCard} from "@/Components/MovieCard.jsx";
 
-export default function Home({movies}) {
-    const {session} = usePage().props
-
+export default function Home({movies, session}) {
     return (
         <MainLayout>
             <Head title="Home"/>

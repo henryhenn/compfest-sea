@@ -5,10 +5,10 @@ import TextInput from "@/Components/TextInput.jsx";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import {Alert} from "@/Components/Alert.jsx";
 import InputError from "@/Components/InputError.jsx";
-import {formatCurrency} from '@/Components/FormatCurrency.jsx'
+import {formatCurrency} from '@/Functions/FormatCurrency.jsx'
 
 export default function Balance({auth, session}) {
-    const {data, post, processing, setData, errors, reset, put} = useForm({
+    const {post, processing, setData, errors, put} = useForm({
         balance: null
     });
 

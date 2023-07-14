@@ -1,9 +1,9 @@
 import MainLayout from "@/Layouts/MainLayout.jsx";
 import {Head, Link} from "@inertiajs/react";
 import {Heading} from "@/Components/Heading.jsx";
-import {formatCurrency} from '@/Components/FormatCurrency.jsx'
+import {formatCurrency} from '@/Functions/FormatCurrency.jsx'
 
-export default function Detail({auth, movie, showtimes}) {
+export default function Detail({auth, movie}) {
     return (
         <MainLayout>
             <Head title="Movie's Detail"/>
@@ -40,8 +40,9 @@ export default function Detail({auth, movie, showtimes}) {
                             <div className="mt-6">
                                 <p className="mb-2">Available Showtimes: </p>
                                 <div className="grid grid-cols-2 gap-4">
-                                    {movie.showtimes.length > 0 ? movie.showtimes.map(showtime => (
+                                    {movie.showtimes.length > 0 ? movie.showtimes.map((showtime, key) => (
                                         <span
+                                            key={key}
                                             className="text-gray-100 p-3 border border-gray-100 rounded font-semibold">{showtime.play_time}</span>
                                     )) : (
                                         <span

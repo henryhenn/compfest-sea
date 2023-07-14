@@ -5,7 +5,6 @@ import Dropdown from "@/Components/Dropdown.jsx";
 
 export const Navbar = () => {
     const {auth} = usePage().props
-
     const [state, setState] = useState(false)
 
     return (
@@ -42,9 +41,10 @@ export const Navbar = () => {
                         <ul className="justify-end items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
                             <NavLink href={route('home')} active={route().current('home')}>Home</NavLink>
 
-                            <NavLink href={route('movies.index')} active={route().current('movies.*')}>Movies</NavLink>
+                            <NavLink href={route('movies.index')} active={route().current('movies.*') || route().current('order-ticket.*')}>Movies</NavLink>
 
-                            <NavLink href={route('showtimes')} active={route().current('showtimes')}>Show Times</NavLink>
+                            <NavLink href={route('showtimes')} active={route().current('showtimes')}>Show
+                                Times</NavLink>
 
                             <span className='hidden w-px h-6 bg-gray-300 md:block'></span>
                             <div className='space-y-3 items-center gap-x-6 md:flex md:space-y-0'>
@@ -100,7 +100,8 @@ export const Navbar = () => {
                                                 <NavLink href={route('balance.index')}
                                                          active={route().current('balance.index')}>Your
                                                     Balance</NavLink>
-                                                <NavLink href={route('transactions.index')} active={route().current('transactions.*')}>Transactions
+                                                <NavLink href={route('transactions.index')}
+                                                         active={route().current('transactions.*')}>Transactions
                                                     History</NavLink>
                                             </div>
                                         </div>

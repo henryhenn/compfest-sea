@@ -1,4 +1,4 @@
-import {useState} from "react";
+ import {useState} from "react";
 import {usePage} from "@inertiajs/react";
 
 export const Alert = () => {

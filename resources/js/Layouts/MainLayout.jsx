@@ -1,5 +1,4 @@
 import {Navbar} from "@/Components/Navbar.jsx";
-import {Alert} from "@/Components/Alert.jsx";
 
 export default function MainLayout({children}) {
     return (

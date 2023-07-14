@@ -1,11 +1,16 @@
 import MainLayout from "@/Layouts/MainLayout.jsx";
-import {Head, Link} from "@inertiajs/react";
+import {Head} from "@inertiajs/react";
 import {Heading} from "@/Components/Heading.jsx";
-import {formatCurrency} from "@/Components/FormatCurrency.jsx";
+import {formatCurrency} from "@/Functions/FormatCurrency.jsx";
 import {LinkButton} from "@/Components/LinkButton.jsx";
 import {Alert} from "@/Components/Alert.jsx";
+import {useState} from "react";
+import Modal from "@/Components/Modal.jsx";
 
 export default function Transaction({transactions, session}) {
+    const [state, setState] = useState(false)
+    const [transaction, setTransaction] = useState(null)
+
     return (
         <MainLayout>
             <Head title="Transactions History"/>
@@ -37,7 +42,7 @@ export default function Transaction({transactions, session}) {
                                     </td>
                                     <td className="pr-6 py-4 whitespace-nowrap">
                                         {!transaction.is_canceled ? (
-                                            <LinkButton href={route('transactions.update', transaction)}
+                                            <LinkButton href={route('transactions.show', transaction)}
                                                         classname="font-medium hover:bg-gray-100 border-gray-100 hover:text-red-600">
                                                 See Ticket
                                             </LinkButton>
@@ -47,12 +52,17 @@ export default function Transaction({transactions, session}) {
                                     </td>
                                     <td className="pr-6 py-4 whitespace-nowrap">
                                         {!transaction.is_canceled ? (
-                                            <LinkButton href={route('transactions.update', transaction)} method="put"
-                                                        onClick={e => confirm("Are you sure?")}
-                                                        classname="font-medium bg-red-600 border-red-600 hover:bg-red-700">
+                                            <button
+                                                onClick={e => {
+                                                    setState(true)
+                                                    setTransaction(transaction)
+                                                }}
+                                                className="block py-3 px-4 text-center text-gray-100 border hover-transition 600 rounded-lg shadow font-medium bg-red-600 border-red-600 hover:bg-red-700">
                                                 Cancel
-                                            </LinkButton>) : (
-                                            <p>Canceled at: <span className="font-semibold">{transaction.updated_at}</span></p>
+                                            </button>
+                                        ) : (
+                                            <p>Canceled at: <span
+                                                className="font-semibold">{transaction.updated_at}</span></p>
                                         )}
                                     </td>
                                 </tr>
@@ -69,7 +79,12 @@ export default function Transaction({transactions, session}) {
                     </table>
                 </div>
             </div>
-
+            {state? (
+                <Modal transaction={transaction}>
+                    <p className="font-bold text-xl mb-6">This can't be undone!</p>
+                    <p>Are you sure to cancel transaction on <span className="font-semibold">{transaction.created_at}</span>?</p>
+                </Modal>
+            ) : ""}
         </MainLayout>
     )
 }

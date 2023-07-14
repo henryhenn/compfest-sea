@@ -1,120 +1,212 @@
 {
-  "_InputLabel-21104f04.js": {
-    "file": "assets/InputLabel-21104f04.js",
+  "_Alert-01071274.js": {
+    "file": "assets/Alert-01071274.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_PrimaryButton-211e321f.js": {
-    "file": "assets/PrimaryButton-211e321f.js",
+  "_FormatCurrency-0ed217c7.js": {
+    "file": "assets/FormatCurrency-0ed217c7.js"
+  },
+  "_GuestLayout-87afab7d.js": {
+    "file": "assets/GuestLayout-87afab7d.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_TextInput-87bae684.js": {
-    "file": "assets/TextInput-87bae684.js",
+  "_Heading-110a5195.js": {
+    "file": "assets/Heading-110a5195.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "resources/js/Pages/Auth/ConfirmPassword.jsx": {
-    "file": "assets/ConfirmPassword-669574ac.js",
+  "_InputLabel-b5f08409.js": {
+    "file": "assets/InputLabel-b5f08409.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_LinkButton-8c9f5024.js": {
+    "file": "assets/LinkButton-8c9f5024.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_MainLayout-64deb286.js": {
+    "file": "assets/MainLayout-64deb286.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_Modal-c2b6f042.js": {
+    "file": "assets/Modal-c2b6f042.js",
     "imports": [
       "resources/js/app.jsx",
-      "_PrimaryButton-211e321f.js",
-      "_TextInput-87bae684.js",
-      "_InputLabel-21104f04.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Auth/ConfirmPassword.jsx"
+      "_LinkButton-8c9f5024.js"
+    ]
   },
-  "resources/js/Pages/Auth/ForgotPassword.jsx": {
-    "file": "assets/ForgotPassword-971e397c.js",
+  "_MovieCard-f1be13ce.js": {
+    "file": "assets/MovieCard-f1be13ce.js",
     "imports": [
-      "resources/js/app.jsx",
-      "_PrimaryButton-211e321f.js",
-      "_TextInput-87bae684.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Auth/ForgotPassword.jsx"
+      "resources/js/app.jsx"
+    ]
+  },
+  "_PrimaryButton-fc75486e.js": {
+    "file": "assets/PrimaryButton-fc75486e.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_TextInput-17d17adc.js": {
+    "file": "assets/TextInput-17d17adc.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
   },
   "resources/js/Pages/Auth/Login.jsx": {
-    "file": "assets/Login-5ed6c242.js",
+    "file": "assets/Login-e78f94a1.js",
     "imports": [
       "resources/js/app.jsx",
-      "_PrimaryButton-211e321f.js",
-      "_TextInput-87bae684.js",
-      "_InputLabel-21104f04.js"
+      "_GuestLayout-87afab7d.js",
+      "_TextInput-17d17adc.js",
+      "_InputLabel-b5f08409.js",
+      "_PrimaryButton-fc75486e.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/Login.jsx"
   },
   "resources/js/Pages/Auth/Register.jsx": {
-    "file": "assets/Register-55015a76.js",
+    "file": "assets/Register-2d179e6b.js",
     "imports": [
       "resources/js/app.jsx",
-      "_PrimaryButton-211e321f.js",
-      "_TextInput-87bae684.js",
-      "_InputLabel-21104f04.js"
+      "_GuestLayout-87afab7d.js",
+      "_TextInput-17d17adc.js",
+      "_InputLabel-b5f08409.js",
+      "_PrimaryButton-fc75486e.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/Register.jsx"
   },
-  "resources/js/Pages/Auth/ResetPassword.jsx": {
-    "file": "assets/ResetPassword-faa770d1.js",
+  "resources/js/Pages/Balance/Balance.jsx": {
+    "file": "assets/Balance-81fe3b41.js",
     "imports": [
       "resources/js/app.jsx",
-      "_PrimaryButton-211e321f.js",
-      "_TextInput-87bae684.js",
-      "_InputLabel-21104f04.js"
+      "_MainLayout-64deb286.js",
+      "_Heading-110a5195.js",
+      "_TextInput-17d17adc.js",
+      "_PrimaryButton-fc75486e.js",
+      "_Alert-01071274.js",
+      "_FormatCurrency-0ed217c7.js"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Auth/ResetPassword.jsx"
-  },
-  "resources/js/Pages/Auth/VerifyEmail.jsx": {
-    "file": "assets/VerifyEmail-c3c51dde.js",
-    "imports": [
-      "resources/js/app.jsx",
-      "_PrimaryButton-211e321f.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/Auth/VerifyEmail.jsx"
+    "src": "resources/js/Pages/Balance/Balance.jsx"
   },
   "resources/js/Pages/Home.jsx": {
-    "file": "assets/Home-308e018a.js",
+    "file": "assets/Home-a1fdea9c.js",
     "imports": [
-      "resources/js/app.jsx"
+      "resources/js/app.jsx",
+      "_MainLayout-64deb286.js",
+      "_LinkButton-8c9f5024.js",
+      "_Alert-01071274.js",
+      "_MovieCard-f1be13ce.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Home.jsx"
   },
-  "resources/js/Pages/Welcome.jsx": {
-    "file": "assets/Welcome-6f1d33e4.js",
+  "resources/js/Pages/Movie/Detail.jsx": {
+    "file": "assets/Detail-70326902.js",
     "imports": [
-      "resources/js/app.jsx"
+      "resources/js/app.jsx",
+      "_MainLayout-64deb286.js",
+      "_Heading-110a5195.js",
+      "_FormatCurrency-0ed217c7.js"
     ],
     "isDynamicEntry": true,
-    "src": "resources/js/Pages/Welcome.jsx"
+    "src": "resources/js/Pages/Movie/Detail.jsx"
+  },
+  "resources/js/Pages/Movie/Movies.jsx": {
+    "file": "assets/Movies-9608d172.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_MainLayout-64deb286.js",
+      "_MovieCard-f1be13ce.js",
+      "_Heading-110a5195.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Movie/Movies.jsx"
+  },
+  "resources/js/Pages/Showtime/Showtime.jsx": {
+    "file": "assets/Showtime-2c3a6257.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_MainLayout-64deb286.js",
+      "_Heading-110a5195.js",
+      "_LinkButton-8c9f5024.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Showtime/Showtime.jsx"
+  },
+  "resources/js/Pages/Ticket/Order.jsx": {
+    "file": "assets/Order-3be794f9.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_MainLayout-64deb286.js",
+      "_Heading-110a5195.js",
+      "_FormatCurrency-0ed217c7.js",
+      "_InputLabel-b5f08409.js",
+      "_TextInput-17d17adc.js",
+      "_Modal-c2b6f042.js",
+      "_LinkButton-8c9f5024.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Ticket/Order.jsx"
+  },
+  "resources/js/Pages/Transaction/Ticket.jsx": {
+    "file": "assets/Ticket-bc974d3a.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_MainLayout-64deb286.js",
+      "_FormatCurrency-0ed217c7.js",
+      "_Heading-110a5195.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Transaction/Ticket.jsx"
+  },
+  "resources/js/Pages/Transaction/Transaction.jsx": {
+    "file": "assets/Transaction-ba518bf2.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_MainLayout-64deb286.js",
+      "_Heading-110a5195.js",
+      "_FormatCurrency-0ed217c7.js",
+      "_LinkButton-8c9f5024.js",
+      "_Alert-01071274.js",
+      "_Modal-c2b6f042.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Transaction/Transaction.jsx"
   },
   "resources/js/app.css": {
-    "file": "assets/app-346c8651.css",
+    "file": "assets/app-03272263.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.jsx": {
     "css": [
-      "assets/app-346c8651.css"
+      "assets/app-03272263.css"
     ],
     "dynamicImports": [
-      "resources/js/Pages/Auth/ConfirmPassword.jsx",
-      "resources/js/Pages/Auth/ForgotPassword.jsx",
       "resources/js/Pages/Auth/Login.jsx",
       "resources/js/Pages/Auth/Register.jsx",
-      "resources/js/Pages/Auth/ResetPassword.jsx",
-      "resources/js/Pages/Auth/VerifyEmail.jsx",
+      "resources/js/Pages/Balance/Balance.jsx",
       "resources/js/Pages/Home.jsx",
-      "resources/js/Pages/Welcome.jsx"
+      "resources/js/Pages/Movie/Detail.jsx",
+      "resources/js/Pages/Movie/Movies.jsx",
+      "resources/js/Pages/Showtime/Showtime.jsx",
+      "resources/js/Pages/Ticket/Order.jsx",
+      "resources/js/Pages/Transaction/Ticket.jsx",
+      "resources/js/Pages/Transaction/Transaction.jsx"
     ],
-    "file": "assets/app-aa326a2e.js",
+    "file": "assets/app-bc4c702b.js",
     "isEntry": true,
     "src": "resources/js/app.jsx"
   }

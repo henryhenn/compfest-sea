@@ -4,14 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\MovieResource;
 use App\Models\Movie;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Request $request)
+    public function __invoke()
     {
         $movies = MovieResource::collection(
             Movie::query()

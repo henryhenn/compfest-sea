@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderTicketRequest;
 use App\Http\Resources\MovieResource;
 use App\Http\Resources\SeatResource;
 use App\Http\Resources\ShowtimeResource;
@@ -9,11 +10,7 @@ use App\Models\Balance;
 use App\Models\Movie;
 use App\Models\Seat;
 use App\Models\Showtime;
-use App\Models\Ticket;
-use App\Models\Transaction;
 use App\Services\StoreOrderTicketService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class OrderTicketController extends Controller
 {
@@ -32,15 +29,11 @@ class OrderTicketController extends Controller
         return inertia('Ticket/Order', compact('movie', 'seats', 'showtimes'));
     }
 
-    public function store(Request $request)
+    public function store(OrderTicketRequest $request)
     {
-        $request->validate([
-            'showtime' => 'required',
-            'seat_numbers' => 'required|array|min:1|max:6',
-            'movie_id' => 'required',
-        ]);
+        $userBalance = Balance::where('user_id', auth()->id())->first();
 
-        StoreOrderTicketService::order($request);
+        StoreOrderTicketService::order($request->validated(), $userBalance);
 
         return to_route('transactions.index')->with('message', 'Your ticket has been successfully ordered!');
     }

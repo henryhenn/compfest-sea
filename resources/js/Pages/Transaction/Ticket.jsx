@@ -1,6 +1,7 @@
 import MainLayout from "@/Layouts/MainLayout.jsx";
 import {Head} from "@inertiajs/react";
-import {formatCurrency} from "@/Components/FormatCurrency.jsx";
+import {formatCurrency} from "@/Functions/FormatCurrency.jsx";
+import {Heading} from "@/Components/Heading.jsx";
 
 export default function Ticket({tickets}) {
     return (
@@ -8,8 +9,11 @@ export default function Ticket({tickets}) {
             <Head title="Movie Ticket"/>
 
             <div className="min-h-screen">
-                {tickets.map(ticket => (
+                <Heading title="Tickets"/>
+
+                {tickets.map((ticket, key) => (
                     <article
+                        key={key}
                         className="max-w-md mb-14 mt-6 md:max-w-full md:w-full flex flex-col md:flex-row mx-auto shadow-lg shadow-gray-700 rounded-md">
                         <img src={ticket.movie.poster_url} loading="lazy" alt={ticket.movie.title}
                              className="w-full md:w-64 rounded-t-md mx-auto md:mx-0 md:rounded-l-md"/>
